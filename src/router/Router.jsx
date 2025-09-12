@@ -6,9 +6,14 @@ const router = createBrowserRouter([
     {
         path: '/',
         Component: Home,
-        children:[
+        children: [
             {
                 path: '/details-page/:id',
+                loader: async () => {
+                    const res = await fetch('/foodItems.json');
+                    const data = await res.json()
+                    return data
+                },
                 Component: FoodDetails
             }
         ]

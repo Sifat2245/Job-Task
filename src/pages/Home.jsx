@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Foods from './Foods';
 
 const Home = () => {
-    fetch('foodItems.js').then(res => res.json()).then(data => setFoods(data))
+    useEffect(() => {
+        fetch('foodItems.json')
+        .then(res => res.json())
+        .then(data => setFoods(data))
+    }, [])
     const [foods, setFoods] = useState([])
     // console.log(foods);
     return (

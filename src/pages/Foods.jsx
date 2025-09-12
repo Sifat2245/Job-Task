@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
 
 const Foods = ({ food }) => {
-    console.log(food);
+    // console.log(food);
+
+
+    const [quantity, setQuantity] = useState(0)
+
+    const quantityIncrease = () =>{
+       const increase =  quantity + 1
+       setQuantity(increase)
+    }
+    const quantityDecrease = () =>{
+       const decrease =  quantity - 1
+       setQuantity(decrease)
+    }
+
     return (
         <div className='border border-neutral-400 rounded-2xl p-10'>
             <div className=''>
@@ -16,7 +29,13 @@ const Foods = ({ food }) => {
                 </div>
                 <p className='text-lg font-semibold'>Price: $ {food.price}</p>
 
-                <Link to={`/details-page/${food.id}`} className='px-6 py-2 bg-amber-500 rounded-2xl mt-6 hover:cursor-pointer hover:bg-amber-600 font-bold'>View Details</Link>
+                <div className='flex flex-row gap-4'>
+                    <p>quantity :  <div className='p-4 border flex gap-4 rounded-lg w-full text-center'>
+                        <button onClick={quantityDecrease}>-</button>
+                        <div>{quantity}</div>
+                        <button onClick={quantityIncrease}>+</button>
+                    </div></p>
+                </div>
 
             </div>
         </div>
